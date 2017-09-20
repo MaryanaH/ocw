@@ -24,7 +24,6 @@ public class Main {
         System.out.println("Final position = " + finalPosition);
 
 
-
     }
 
     public static double parseDouble(String arg) {
