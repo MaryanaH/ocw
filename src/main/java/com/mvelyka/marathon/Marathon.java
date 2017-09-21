@@ -9,19 +9,24 @@ public class Marathon {
         this.performers = performers;
     }
 
-    public Performer bestPerformer() {
-        Performer bestPerformer = performers[0];
-        for(int i = 0; i < performers.length; i++) {
-            if(bestPerformer.getScore() <= performers[i].getScore()) {
-                bestPerformer = performers[i];
-            }
+    private Performer getNthPerformer(int n) {
+        // When it will be sorted?
+        if(performers.length == 1) {
+            return performers[0];
+        } else if(performers.length == 0) {
+            return null;
+        } else {
+            Arrays.sort(performers);
+            return performers[n];
         }
-        return bestPerformer;
+
+    }
+    public Performer bestPerformer() {
+        return getNthPerformer(performers.length - 1);
     }
 
     public Performer secondBestPerformer() {
-        Arrays.sort(performers);
-        return performers[performers.length - 2];
+        return getNthPerformer(performers.length - 2);
 
     }
 }
