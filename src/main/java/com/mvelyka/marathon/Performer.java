@@ -9,6 +9,7 @@ import lombok.*;
 public class Performer implements Comparable<Performer> {
 
     private String name;
+
     private int score;
 
     @Override

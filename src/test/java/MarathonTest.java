@@ -6,11 +6,12 @@ import static org.junit.Assert.assertEquals;
 
 public class MarathonTest {
     Performer[] performers;
-    private Marathon marathon = new Marathon(performers);
+    private Marathon marathon;
 
     @Test
     public void bestPerformerTest() {
         performers = new Performer[3];
+        marathon = new Marathon(performers);
         performers[0] = new Performer("name1", 5);
         performers[1] = new Performer("name2", 4);
         performers[2] = new Performer("name3", 6);
@@ -21,10 +22,12 @@ public class MarathonTest {
     @Test
     public void secondBestPerformerTest() {
         performers = new Performer[3];
+        marathon = new Marathon(performers);
         performers[0] = new Performer("name1", 5);
         performers[1] = new Performer("name2", 4);
         performers[2] = new Performer("name3", 6);
+        Performer expected = performers[0];
         Performer actual = marathon.secondBestPerformer();
-        assertEquals(performers[0], actual);
+        assertEquals(expected, actual);
     }
 }
