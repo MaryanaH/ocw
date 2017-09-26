@@ -9,7 +9,7 @@ public class LibraryTest {
     Book[] books;
 
     @Test
-    public void borrowBookTrueTest() {
+    public void borrowAvailableBookTest() {
         books = new Book[1];
         library = new Library(books);
 
@@ -20,20 +20,18 @@ public class LibraryTest {
 
     }
 
-    @Test
-    public void borrowBookFalseTest() {
+    @Test(expected = IllegalArgumentException.class)
+    public void borrowNotAvailableBookTest() {
         books = new Book[1];
         library = new Library(books);
 
         books[0] = new Book("Book1", "Author1", false);
         library.borrowBook(books[0].getName());
 
-        assertEquals(books[0].isAvailable(), false);
-
     }
 
     @Test
-    public void returnBookTrueTest() {
+    public void returnMissingBookTest() {
         books = new Book[1];
         library = new Library(books);
 
@@ -45,7 +43,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void returnBookFalseTest() {
+    public void returnAvailableBookTest() {
         books = new Book[1];
         library = new Library(books);
 
@@ -53,6 +51,26 @@ public class LibraryTest {
         library.returnBook(books[0].getName());
 
         assertEquals(books[0].isAvailable(), true);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void returnNonExistingBook(){
+        books = new Book[1];
+        library = new Library(books);
+
+        books[0] = new Book("Book1", "Author1", true);
+        library.returnBook("NonExisting book");
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void borrowNonExistingBook(){
+        books = new Book[1];
+        library = new Library(books);
+
+        books[0] = new Book("Book1", "Author1", true);
+        library.borrowBook("NonExisting book");
 
     }
 

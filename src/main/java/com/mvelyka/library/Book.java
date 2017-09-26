@@ -1,16 +1,15 @@
 package com.mvelyka.library;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
+@Data
 public class Book {
-    String name;
-    String author;
-    boolean isAvailable;
+    @NonNull
+    private String name;
+
+    @NonNull
+    private String author;
+
+    @NonNull
+    private boolean isAvailable;
 }
